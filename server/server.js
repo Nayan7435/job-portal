@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const jobRoutes = require('./routes/jobRoutes.js');
+const aiRoutes = require('./routes/aiRoutes.js');
 
 const app = express();
 
@@ -17,7 +18,8 @@ app.get('/', (req,res) => {
 });
 
 app.use('/api/auth', authRoutes);
-app.use("/api/jobs", jobRoutes);
+app.use('/api/jobs', jobRoutes);
+app.use('/api/ai', aiRoutes);
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
