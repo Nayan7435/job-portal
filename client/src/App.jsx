@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import JobDetails from './pages/JobDetails';
 import PostJob from './pages/PostJob';
 import ProtectedRoute from './components/ProtectedRoute';
+import ResumeAnalyzer from './pages/ResumeAnalyzer';
 
 function App() {
   return (
@@ -19,6 +20,12 @@ function App() {
       <Route path="/post-job" element={
         <ProtectedRoute allowedRoles={['recruiter']}>
           <PostJob />
+        </ProtectedRoute>
+      }
+      />
+      <Route path='/resume-analyzer' element= {
+        <ProtectedRoute>
+          <ResumeAnalyzer />
         </ProtectedRoute>
       }
       />

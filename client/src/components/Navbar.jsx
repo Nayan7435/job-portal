@@ -28,6 +28,9 @@ const Navbar = () => {
                 Post Job
               </Link>
             )}
+            <Link to="/resume-analyzer" className="text-gray-700 hover:text-blue-600">
+              AI Resume Check
+            </Link>
             <span className="text-sm text-gray-500">Hi, {user.name}</span>
             <button
               onClick={handleLogout}
