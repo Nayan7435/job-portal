@@ -5,6 +5,7 @@ import JobsList from './pages/JobsList';
 import Navbar from './components/Navbar';
 import JobDetails from './pages/JobDetails';
 import PostJob from './pages/PostJob';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -13,9 +14,14 @@ function App() {
     <Routes>
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />}></Route>
-      <Route path='/jobs' element={<JobsList />}></Route>
-      <Route path='/jobs/:id' element={<JobDetails />}></Route>
-      <Route path='/post-job' element={<PostJob />}></Route>
+      <Route path="/jobs" element={<JobsList />}></Route>
+      <Route path="/jobs/:id" element={<JobDetails />}></Route>
+      <Route path="/post-job" element={
+        <ProtectedRoute allowedRoles={['recruiter']}>
+          <PostJob />
+        </ProtectedRoute>
+      }
+      />
     </Routes>
     </>
   );
