@@ -34,7 +34,7 @@ const JobsList = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 px-4">
-      <h2 className="text-2xl font-bold mb-6">Available Jobs</h2>
+      <h2 className="font-display text-2xl font-bold text-navy mb-6">Available Jobs</h2>
 
       {jobs.length === 0 ? (
         <p>No jobs posted yet.</p>
@@ -44,24 +44,25 @@ const JobsList = () => {
             <Link
               to={`/jobs/${job._id}`}
               key={job._id}
-              className="block bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all duration-200"
+              className="flex bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-navy/30 hover:shadow-sm transition-all duration-200"
             >
-              <div className="flex justify-between items-start">
+              <div className="w-1.5 bg-amber"></div>
+              <div className="flex-1 p-5 flex justify-between items-start">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
+                  <h3 className="font-display font-bold text-navy">
                     {job.title}
                   </h3>
-                  <p className="text-gray-500 text-sm mt-1">
+                  <p className="text-sm text-slate mt-1">
                     {job.company} • {job.location}
                   </p>
+                  <p className="font-mono text-sm text-navy mt-3">
+                    ₹{job.salary.toLocaleString()} / yr
+                  </p>
                 </div>
-                <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full font-medium">
+                <span className="font-mono text-xs text-amber bg-amber/10 px-2.5 py-1 rounded-full whitespace-nowrap">
                   {job.jobType}
                 </span>
               </div>
-              <p className="text-gray-800 font-semibold mt-3">
-                ₹{job.salary.toLocaleString()} / year
-              </p>
             </Link>
           ))}
         </div>
