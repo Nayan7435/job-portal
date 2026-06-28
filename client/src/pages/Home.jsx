@@ -2,59 +2,60 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
 
 const Home = () => {
-    const { user } = useAuth();
+  const { user } = useAuth();
 
-    return (
-    <div className="min-h-[calc(100vh-72px)] bg-linear-to-br from-blue-50 to-white flex items-center">
-      <div className="max-w-5xl mx-auto px-6 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Find Your Next <span className="text-blue-600">Opportunity</span>
-        </h1>
-        <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-          Connect with top recruiters, discover jobs that match your skills, and let AI help you craft the perfect application.
-        </p>
+  return (
+    <div className="bg-white">
+      {/* Hero */}
+      <section className="bg-mist border-b border-gray-200">
+        <div className="max-w-5xl mx-auto px-6 py-24 text-center">
+          <p className="font-mono text-xs text-amber tracking-widest uppercase mb-4">
+            // for_developers_and_recruiters
+          </p>
+          <h1 className="font-display text-5xl md:text-6xl font-bold text-navy leading-tight mb-5">
+            Ship your career.<br />Not just your code.
+          </h1>
+          <p className="text-lg text-slate max-w-xl mx-auto mb-10">
+            Browse real dev roles, apply in one click, and get instant AI feedback on how your resume stacks up.
+          </p>
 
-        <div className="flex justify-center gap-4">
-          <Link
-            to="/jobs"
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition"
-          >
-            Browse Jobs
-          </Link>
-
-          {!user && (
+          <div className="flex justify-center gap-3">
             <Link
-              to="/signup"
-              className="bg-white text-blue-600 border border-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition"
+              to="/jobs"
+              className="bg-navy text-white px-6 py-3 rounded-md font-medium hover:bg-navy/90 transition"
             >
-              Get Started
+              Browse Jobs
             </Link>
-          )}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div className="text-blue-600 text-2xl mb-2">🔍</div>
-            <h3 className="font-semibold mb-1">Browse Jobs</h3>
-            <p className="text-sm text-gray-600">Explore opportunities posted by verified recruiters across roles and locations.</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div className="text-blue-600 text-2xl mb-2">⚡</div>
-            <h3 className="font-semibold mb-1">Apply Instantly</h3>
-            <p className="text-sm text-gray-600">One-click apply with role-based profiles for job seekers and recruiters.</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div className="text-blue-600 text-2xl mb-2">🤖</div>
-            <h3 className="font-semibold mb-1">AI Resume Check</h3>
-            <p className="text-sm text-gray-600">Get instant AI-powered feedback on how well your resume matches a job.</p>
+            {!user && (
+              <Link
+                to="/signup"
+                className="bg-white text-navy border border-gray-300 px-6 py-3 rounded-md font-medium hover:border-navy transition"
+              >
+                Create Account
+              </Link>
+            )}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Features */}
+      <section className="max-w-5xl mx-auto px-6 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
+          {[
+            { tag: '01', title: 'Browse Jobs', desc: 'Real listings from recruiters, filtered by role, location, and type.' },
+            { tag: '02', title: 'Apply Instantly', desc: 'One-click apply with role-based profiles — no repeated forms.' },
+            { tag: '03', title: 'AI Resume Check', desc: 'Paste a job description, get a match score and gap analysis in seconds.' },
+          ].map((item) => (
+            <div key={item.tag} className="bg-white p-8">
+              <span className="font-mono text-xs text-amber">{item.tag}</span>
+              <h3 className="font-display font-bold text-navy mt-2 mb-2">{item.title}</h3>
+              <p className="text-sm text-slate">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
-
 };
 
 export default Home;
