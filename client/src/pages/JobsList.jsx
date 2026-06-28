@@ -24,49 +24,61 @@ const JobsList = () => {
     fetchJobs();
   }, []);
 
-  if (loading) {
-    return <Spinner />;
-  }
+  if (loading) return <Spinner />;
 
   if (error) {
     return <p className="text-center mt-10 text-red-600">{error}</p>;
   }
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 px-4">
-      <h2 className="font-display text-2xl font-bold text-navy mb-6">Available Jobs</h2>
+    <div className="bg-mist min-h-[calc(100vh-72px)]">
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <p className="font-mono text-xs text-amber tracking-widest uppercase mb-2">
+          // {jobs.length} open_roles
+        </p>
+        <h2 className="font-display text-3xl font-bold text-navy mb-8">
+          Available Jobs
+        </h2>
 
-      {jobs.length === 0 ? (
-        <p>No jobs posted yet.</p>
-      ) : (
-        <div className="space-y-4">
-          {jobs.map((job) => (
-            <Link
-              to={`/jobs/${job._id}`}
-              key={job._id}
-              className="flex bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-navy/30 hover:shadow-sm transition-all duration-200"
-            >
-              <div className="w-1.5 bg-amber"></div>
-              <div className="flex-1 p-5 flex justify-between items-start">
-                <div>
-                  <h3 className="font-display font-bold text-navy">
+        {jobs.length === 0 ? (
+          <div className="bg-white border border-gray-200 rounded-lg p-10 text-center">
+            <p className="text-slate">No jobs posted yet. Check back soon.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {jobs.map((job) => (
+              <Link
+                to={`/jobs/${job._id}`}
+                key={job._id}
+                className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-navy/30 hover:shadow-md transition-all duration-200 flex flex-col"
+              >
+                <div className="h-2 bg-amber"></div>
+                <div className="p-7 flex flex-col flex-1">
+                  <h3 className="font-display font-bold text-navy text-xl">
                     {job.title}
                   </h3>
-                  <p className="text-sm text-slate mt-1">
-                    {job.company} • {job.location}
+                  <p className="text-slate mt-2">{job.company}</p>
+                  <p className="text-sm text-slate mt-0.5">{job.location}</p>
+
+                  <p className="text-sm text-slate mt-4 line-clamp-3 flex-1">
+                    {job.description}
                   </p>
-                  <p className="font-mono text-sm text-navy mt-3">
-                    ₹{job.salary.toLocaleString()} / yr
-                  </p>
+
+                  <div className="flex items-center justify-between mt-6 pt-5 border-t border-gray-100">
+                    <p className="font-mono text-navy font-semibold">
+                      ₹{job.salary.toLocaleString()}
+                      <span className="text-slate text-xs">/yr</span>
+                    </p>
+                    <span className="font-mono text-xs text-amber bg-amber/10 px-3 py-1.5 rounded-full">
+                      {job.jobType}
+                    </span>
+                  </div>
                 </div>
-                <span className="font-mono text-xs text-amber bg-amber/10 px-2.5 py-1 rounded-full whitespace-nowrap">
-                  {job.jobType}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
