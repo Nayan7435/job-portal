@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../utils/axiosInstance';
 import { Link } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 const JobsList = () => {
     const [jobs, setJobs] = useState([]);
@@ -24,7 +25,7 @@ const JobsList = () => {
     }, []);
 
     if(loading){
-        return <p className="text-center mt-10">Loading jobs...</p>;
+        return <Spinner />;
     }
 
     if(error){

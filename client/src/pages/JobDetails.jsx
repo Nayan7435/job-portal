@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance";
 import { useAuth } from "../context/useAuth";
+import Spinner from "../components/Spinner";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -38,7 +39,7 @@ const JobDetails = () => {
   };
 
   if (loading) {
-    return <p className="text-center mt-10">Loading...</p>;
+    return <Spinner />;
   }
 
   if (error) {

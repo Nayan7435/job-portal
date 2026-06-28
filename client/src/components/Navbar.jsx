@@ -11,7 +11,7 @@ const Navbar = () => {
     };
 
     return (
-    <nav className="bg-white shadow px-6 py-4 flex justify-between items-center">
+    <nav className="bg-white shadow-sm sticky top-0 z-10 px-6 py-4 flex justify-between items-center border-b border-gray-100">
       <Link to="/jobs" className="text-xl font-bold text-blue-600">
         JobPortal
       </Link>
