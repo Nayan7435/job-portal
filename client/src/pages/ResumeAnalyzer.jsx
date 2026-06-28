@@ -28,74 +28,84 @@ const ResumeAnalyzer = () => {
     };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 px-4">
-      <h2 className="text-2xl font-bold mb-6">AI Resume Analyzer</h2>
+    <div className="max-w-2xl mx-auto mt-10 px-4 pb-16">
+      <p className="font-mono text-xs text-amber tracking-widest uppercase mb-2">
+        // ai_powered
+      </p>
+      <h2 className="font-display text-2xl font-bold text-navy mb-6">Resume Analyzer</h2>
 
-      <form onSubmit={handleAnalyze} className="bg-white p-6 rounded-lg shadow space-y-4">
-        <div>
-          <label className="block font-medium mb-1">Your Resume (paste as text)</label>
-          <textarea
-            value={resumeText}
-            onChange={(e) => setResumeText(e.target.value)}
-            required
-            rows={6}
-            className="w-full p-2 border rounded"
-            placeholder="Paste your resume content here..."
-          />
-        </div>
+      <form onSubmit={handleAnalyze} className="bg-white border border-gray-200 rounded-lg p-8">
+        {error && (
+          <p className="bg-red-50 text-red-600 p-2 rounded mb-4 text-sm">
+            {error}
+          </p>
+        )}
 
-        <div>
-          <label className="block font-medium mb-1">Job Description</label>
-          <textarea
-            value={jobDescription}
-            onChange={(e) => setJobDescription(e.target.value)}
-            required
-            rows={6}
-            className="w-full p-2 border rounded"
-            placeholder="Paste the job description here..."
-          />
-        </div>
+        <label className="block text-sm font-medium text-navy mb-1">Your Resume</label>
+        <textarea
+          value={resumeText}
+          onChange={(e) => setResumeText(e.target.value)}
+          required
+          rows={6}
+          className="w-full p-3 border border-gray-300 rounded-md mb-5 text-sm focus:outline-none focus:border-navy transition"
+          placeholder="Paste your resume content here..."
+        />
 
-        {error && <p className="text-red-600 text-sm">{error}</p>}
+        <label className="block text-sm font-medium text-navy mb-1">Job Description</label>
+        <textarea
+          value={jobDescription}
+          onChange={(e) => setJobDescription(e.target.value)}
+          required
+          rows={6}
+          className="w-full p-3 border border-gray-300 rounded-md mb-6 text-sm focus:outline-none focus:border-navy transition"
+          placeholder="Paste the job description here..."
+        />
 
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
+          className="w-full bg-navy text-white py-3 rounded-md font-medium hover:bg-navy/90 disabled:bg-gray-400 transition"
         >
           {loading ? 'Analyzing...' : 'Analyze Resume'}
         </button>
       </form>
 
       {analysis && (
-        <div className="bg-white p-6 rounded-lg shadow mt-6">
-          <h3 className="text-xl font-bold mb-4">
-            Match Score: <span className="text-blue-600">{analysis.matchScore}%</span>
-          </h3>
+        <div className="bg-white border border-gray-200 rounded-lg p-8 mt-6">
+          <div className="flex items-center justify-between mb-6 pb-6 border-b border-gray-100">
+            <span className="font-mono text-xs text-slate uppercase tracking-widest">Match Score</span>
+            <span className="font-display text-3xl font-bold text-navy">{analysis.matchScore}%</span>
+          </div>
 
-          <div className="mb-4">
-            <h4 className="font-semibold text-green-700">Strengths</h4>
-            <ul className="list-disc ml-5 text-gray-700">
+          <div className="mb-5">
+            <h4 className="font-mono text-xs uppercase tracking-widest text-amber mb-2">Strengths</h4>
+            <ul className="space-y-1">
               {analysis.strengths.map((item, idx) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} className="text-sm text-slate flex gap-2">
+                  <span className="text-amber">+</span> {item}
+                </li>
               ))}
             </ul>
           </div>
 
-          <div className="mb-4">
-            <h4 className="font-semibold text-red-700">Missing Skills</h4>
-            <ul className="list-disc ml-5 text-gray-700">
+          <div className="mb-5">
+            <h4 className="font-mono text-xs uppercase tracking-widest text-amber mb-2">Missing Skills</h4>
+            <ul className="space-y-1">
               {analysis.missingSkills.map((item, idx) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} className="text-sm text-slate flex gap-2">
+                  <span className="text-amber">−</span> {item}
+                </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-blue-700">Suggestions</h4>
-            <ul className="list-disc ml-5 text-gray-700">
+            <h4 className="font-mono text-xs uppercase tracking-widest text-amber mb-2">Suggestions</h4>
+            <ul className="space-y-1">
               {analysis.suggestions.map((item, idx) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} className="text-sm text-slate flex gap-2">
+                  <span className="text-amber">→</span> {item}
+                </li>
               ))}
             </ul>
           </div>

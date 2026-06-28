@@ -38,15 +38,18 @@ const Signup = () => {
     };
 
     return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-[calc(100vh-72px)] flex items-center justify-center bg-mist">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
+        className="bg-white border border-gray-200 p-8 rounded-lg w-full max-w-md"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+        <p className="font-mono text-xs text-amber tracking-widest uppercase mb-2 text-center">
+          // create_account
+        </p>
+        <h2 className="font-display text-2xl font-bold text-navy mb-6 text-center">Sign Up</h2>
 
         {error && (
-          <p className="bg-red-100 text-red-600 p-2 rounded mb-4 text-sm">
+          <p className="bg-red-50 text-red-600 p-2 rounded mb-4 text-sm">
             {error}
           </p>
         )}
@@ -58,7 +61,7 @@ const Signup = () => {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-3 border border-gray-300 rounded-md mb-4 text-sm focus:outline-none focus:border-navy transition"
         />
 
         <input
@@ -68,7 +71,7 @@ const Signup = () => {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-3 border border-gray-300 rounded-md mb-4 text-sm focus:outline-none focus:border-navy transition"
         />
 
         <input
@@ -79,14 +82,14 @@ const Signup = () => {
           onChange={handleChange}
           required
           minLength={6}
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-3 border border-gray-300 rounded-md mb-4 text-sm focus:outline-none focus:border-navy transition"
         />
 
         <select
           name="role"
           value={formData.role}
           onChange={handleChange}
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-3 border border-gray-300 rounded-md mb-5 text-sm focus:outline-none focus:border-navy transition"
         >
           <option value="jobseeker">Job Seeker</option>
           <option value="recruiter">Recruiter</option>
@@ -95,14 +98,14 @@ const Signup = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
+          className="w-full bg-navy text-white py-3 rounded-md font-medium hover:bg-navy/90 disabled:bg-gray-400 transition"
         >
           {loading ? 'Signing up...' : 'Sign Up'}
         </button>
 
-        <p className="text-center mt-4 text-sm">
+        <p className="text-center mt-5 text-sm text-slate">
           Already have an account?{' '}
-          <Link to="/login" className="text-blue-600">
+          <Link to="/login" className="text-navy font-medium">
             Login
           </Link>
         </p>
